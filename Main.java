@@ -8,5 +8,3 @@ Foro 2, integrantes del equipo:
 4-
 5- Gabriel de Jesús Campos Romero CR162707
 */
-
-
