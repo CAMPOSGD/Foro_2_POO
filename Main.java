@@ -2,10 +2,10 @@
 Ingresen acá sus nombres !!
 
 Foro 2, integrantes del equipo:
-1-
-2-
-3-
-4-
+1- José Benjamín Valencia Rivera – VR251194
+2- Alexis Ernesto Hernández Monge – HM253055
+3- Jimmy Asdrubal Canales Zelaya – CZ253631
+4- José Ángel Hernández Sánchez – HS240400
 5- Gabriel de Jesús Campos Romero CR162707
 */
 // -------------------------------------------------
