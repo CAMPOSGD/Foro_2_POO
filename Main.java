@@ -44,7 +44,7 @@ class Desktops extends Items {
     private String capacidad_de_disco;
 
     public Desktops(String fabricante, String modelo, String procesador, String GPU, String dimension_de_cpu, String capacidad_de_disco, String memoria) {
-            super(fabricante, modelo, procesador);
+        super(fabricante, modelo, procesador);
         this.memoria = memoria;
         this.GPU = GPU;
         this.dimension_de_cpu = dimension_de_cpu;
@@ -97,7 +97,7 @@ public class Main {
     static ArrayList<Items> menu_registro = new ArrayList<>();
 
 
-// -------------------------------------------------
+    // -------------------------------------------------
 // Lógica de registros
 // -------------------------------------------------
     public static void main(String[] args) {
@@ -139,7 +139,7 @@ public class Main {
     }
 
 
-// -------------------------------------------------
+    // -------------------------------------------------
 // Validar que el usuario ingrese información
 // -------------------------------------------------
     private static String leerDato(String mensaje) {
@@ -265,7 +265,7 @@ public class Main {
                 case 1:
                     reporte =
                             "========================================" + "\n" +
-                            "Estas son las torres que tenemos en inventario: \n";
+                                    "Estas son las torres que tenemos en inventario: \n";
                     for (Items item : menu_registro) {
                         if (item instanceof Desktops) {
 
@@ -273,13 +273,13 @@ public class Main {
 
                             reporte +=
                                     "========================================" + "\n" +
-                                    "Fabricante: " + torre.fabricante + "\n" +
-                                    "Modelo: " + torre.modelo + "\n" +
-                                    "Microprocesador: " + torre.procesador + "\n" +
-                                    "Memoria: " + torre.getMemoria() + "\n" +
-                                    "Tarjeta grafica: " + torre.getGPU() + "\n" +
-                                    "Tamaño de torre: " + torre.getDimension() + "\n" +
-                                    "Capacidad de disco duro: " + torre.getCapacidad() + "\n" ;
+                                            "Fabricante: " + torre.fabricante + "\n" +
+                                            "Modelo: " + torre.modelo + "\n" +
+                                            "Microprocesador: " + torre.procesador + "\n" +
+                                            "Memoria: " + torre.getMemoria() + "\n" +
+                                            "Tarjeta grafica: " + torre.getGPU() + "\n" +
+                                            "Tamaño de torre: " + torre.getDimension() + "\n" +
+                                            "Capacidad de disco duro: " + torre.getCapacidad() + "\n" ;
                         }
                     }
                     break;
@@ -287,7 +287,7 @@ public class Main {
                 case 2:
                     reporte =
                             "========================================" + "\n" +
-                            "Estas son las laptops que tenemos en inventario: \n";
+                                    "Estas son las laptops que tenemos en inventario: \n";
                     for (Items item : menu_registro) {
                         if (item instanceof Laptop) {
 
@@ -295,12 +295,12 @@ public class Main {
 
                             reporte +=
                                     "========================================" + "\n" +
-                                    "Fabricante: " + lap.fabricante + "\n" +
-                                    "Modelo: " + lap.modelo + "\n" +
-                                    "Microprocesador: " + lap.procesador + "\n" +
-                                    "Memoria: " + lap.getMemoria() + "\n" +
-                                    "Tamaño de pantalla: " + lap.getTamanoPantalla() + "\n" +
-                                    "Capacidad de disco duro: " + lap.getCapacidad() + "\n"
+                                            "Fabricante: " + lap.fabricante + "\n" +
+                                            "Modelo: " + lap.modelo + "\n" +
+                                            "Microprocesador: " + lap.procesador + "\n" +
+                                            "Memoria: " + lap.getMemoria() + "\n" +
+                                            "Tamaño de pantalla: " + lap.getTamanoPantalla() + "\n" +
+                                            "Capacidad de disco duro: " + lap.getCapacidad() + "\n"
                             ;
                         }
                     }
@@ -312,7 +312,7 @@ public class Main {
 
                     reporte =
                             "========================================" + "\n" +
-                            "Estas son las tablets que tenemos en inventario: \n";
+                                    "Estas son las tablets que tenemos en inventario: \n";
                     for (Items item : menu_registro) {
                         if (item instanceof Tablet) {
 
@@ -320,14 +320,14 @@ public class Main {
 
                             reporte +=
                                     "========================================" + "\n" +
-                                    "Fabricante: " + tab.fabricante + "\n" +
-                                    "Modelo: " + tab.modelo + "\n" +
-                                    "Microprocesador: " + tab.procesador + "\n" +
-                                    "Tamaño diagonal de pantalla: " + tab.getTamanoPantalla() + "\n" +
-                                    "¿Capacitiva/Resistiva?: " + tab.getcapacitiva_resistiva() + "\n" +
-                                    "Tamaño de memoria NAND: " + tab.getMemoriaNAND() + "\n" +
-                                    "Sistema Operativo: " + tab.getSos() + "\n"
-                                    ;
+                                            "Fabricante: " + tab.fabricante + "\n" +
+                                            "Modelo: " + tab.modelo + "\n" +
+                                            "Microprocesador: " + tab.procesador + "\n" +
+                                            "Tamaño diagonal de pantalla: " + tab.getTamanoPantalla() + "\n" +
+                                            "¿Capacitiva/Resistiva?: " + tab.getcapacitiva_resistiva() + "\n" +
+                                            "Tamaño de memoria NAND: " + tab.getMemoriaNAND() + "\n" +
+                                            "Sistema Operativo: " + tab.getSos() + "\n"
+                            ;
                         }
                     }
 
