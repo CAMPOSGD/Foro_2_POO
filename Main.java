@@ -36,21 +36,25 @@ class Items {
 // -------------------------------------------------
 // Sub clases, herencias y retornos de datos
 // -------------------------------------------------
+
 class Desktops extends Items {
+    private String memoria;
     private String GPU;
     private String dimension_de_cpu;
     private String capacidad_de_disco;
 
-    public Desktops(String fabricante, String modelo, String procesador, String GPU, String dimension_de_cpu, String capacidad_de_disco) {
-        super(fabricante, modelo, procesador);
+    public Desktops(String fabricante, String modelo, String procesador, String GPU, String dimension_de_cpu, String capacidad_de_disco, String memoria) {
+            super(fabricante, modelo, procesador);
+        this.memoria = memoria;
         this.GPU = GPU;
         this.dimension_de_cpu = dimension_de_cpu;
         this.capacidad_de_disco = capacidad_de_disco;
     }
 
-    public String getGPU() { return GPU; }
-    public String getDimension() { return dimension_de_cpu; }
-    public String getCapacidad() { return capacidad_de_disco; }
+    public String getMemoria () {return memoria;}
+    public String getGPU() {return GPU;}
+    public String getDimension() {return dimension_de_cpu;}
+    public String getCapacidad() {return capacidad_de_disco;}
 }
 
 class Laptop extends Items {
@@ -74,14 +78,16 @@ class Tablet extends Items {
     private String capacitiva_resistiva;
     private String tamano_pantalla;
     private String tamano_memoria_NAND;
+    private String sos;
 
-    public Tablet(String fabricante, String modelo, String procesador, String tamano_pantalla, String capacitiva_resistiva, String tamano_memoria_NAND) {
+    public Tablet(String fabricante, String modelo, String procesador, String tamano_pantalla, String capacitiva_resistiva, String tamano_memoria_NAND, String sos) {
         super(fabricante, modelo, procesador);
         this.capacitiva_resistiva = capacitiva_resistiva;
         this.tamano_pantalla = tamano_pantalla;
         this.tamano_memoria_NAND = tamano_memoria_NAND;
+        this.sos = sos;
     }
-
+    public String getSos() {return sos;}
     public String getcapacitiva_resistiva() { return capacitiva_resistiva; }
     public String getTamanoPantalla() { return tamano_pantalla; }
     public String getMemoriaNAND() { return tamano_memoria_NAND; }
@@ -91,10 +97,9 @@ public class Main {
     static ArrayList<Items> menu_registro = new ArrayList<>();
 
 
-    // -------------------------------------------------
-    // Lógica de registros
-    // -------------------------------------------------
-
+// -------------------------------------------------
+// Lógica de registros
+// -------------------------------------------------
     public static void main(String[] args) {
         int opcion = 0;
 
@@ -107,7 +112,12 @@ public class Main {
             );
 
             if (lectura == null) break;
-            opcion = Integer.parseInt(lectura);
+
+            try {
+                opcion = Integer.parseInt(lectura);
+            } catch (NumberFormatException e){
+                continue;
+            }
 
             switch (opcion) {
                 case 1:
@@ -121,11 +131,29 @@ public class Main {
                 case 3:
                     JOptionPane.showMessageDialog(null, "Saliendo del sistema...");
                     break;
+
                 default:
                     JOptionPane.showMessageDialog(null, "Opción no válida");
             }
         }
     }
+
+
+// -------------------------------------------------
+// Validar que el usuario ingrese información
+// -------------------------------------------------
+    private static String leerDato(String mensaje) {
+        String dato;
+        do {
+            dato = JOptionPane.showInputDialog(mensaje);
+            if (dato == null) return "";
+            if (dato.trim().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "El campo no puede estar vacío.");
+            }
+        } while (dato.trim().isEmpty());
+        return dato;
+    }
+
 
     public static void registro() {
         int opcion = 0;
@@ -139,18 +167,26 @@ public class Main {
             );
 
             if (lectura == null) break;
+
+            try {
+                opcion = Integer.parseInt(lectura);
+            } catch (NumberFormatException e){
+                continue;
+            }
+
             opcion = Integer.parseInt(lectura);
 
             switch (opcion) {
                 case 1:
-                    String fabricante = JOptionPane.showInputDialog("Fabricante:");
-                    String modelo = JOptionPane.showInputDialog("Modelo:");
-                    String procesador = JOptionPane.showInputDialog("Procesador:");
-                    String gpu = JOptionPane.showInputDialog("Tarjeta gráfica:");
-                    String dimension = JOptionPane.showInputDialog("Dimensión de torre:");
-                    String capacidad_disco = JOptionPane.showInputDialog("Capacidad de disco:");
+                    String fabricante = leerDato("Fabricante: ");
+                    String modelo = leerDato("Modelo: ");
+                    String procesador = leerDato("Microprocesador: ");
+                    String memoriar = leerDato("Tamaño de memoria: ");
+                    String gpu = leerDato("Tarjeta gráfica :");
+                    String dimension = leerDato("Dimensión de torre:");
+                    String capacidad_disco = leerDato("Capacidad de disco:");
 
-                    menu_registro.add(new Desktops(fabricante, modelo, procesador, gpu, dimension, capacidad_disco));
+                    menu_registro.add(new Desktops(fabricante, modelo, procesador, gpu, dimension, capacidad_disco, memoriar));
 
                     JOptionPane.showMessageDialog(null, "¡La Torre está registrada!\n");
 
@@ -158,13 +194,12 @@ public class Main {
 
                 case 2:
 
-                    fabricante = JOptionPane.showInputDialog("Fabricante: ");
-                    modelo = JOptionPane.showInputDialog("Modelo:");
-                    procesador = JOptionPane.showInputDialog("Procesador: ");
-
-                    String memoria = JOptionPane.showInputDialog("Memoria :");
-                    String tamano_pantalla = JOptionPane.showInputDialog("Tamaño de pantalla: ");
-                    String capacidad_de_disco = JOptionPane.showInputDialog("Capacidad de disco:");
+                    fabricante = leerDato("Fabricante: ");
+                    modelo = leerDato("Modelo: ");
+                    procesador = leerDato("Microprocesador: ");
+                    String memoria = leerDato("Memoria: ");
+                    String tamano_pantalla = leerDato("Tamaño de pantalla: ");
+                    String capacidad_de_disco = leerDato("Capacidad de disco: ");
 
                     menu_registro.add(new Laptop(fabricante, modelo, procesador, memoria, tamano_pantalla, capacidad_de_disco));
 
@@ -174,32 +209,36 @@ public class Main {
 
                 case 3:
 
-                    fabricante = JOptionPane.showInputDialog("Fabricante: ");
-                    modelo = JOptionPane.showInputDialog("Modelo:");
-                    procesador = JOptionPane.showInputDialog("Procesador: ");
+                    fabricante = leerDato("Fabricante: ");
+                    modelo = leerDato("Modelo:");
+                    procesador = leerDato("Microprocesador: ");
+                    tamano_pantalla = leerDato("Tamaño de pantalla: ");
+                    String capacitiva_resistiva = leerDato("¿Es capacitiva o resistiva?: "); // debería dar solo esas opciones?
+                    String NAND = leerDato("Capacidad de disco: ");
+                    String SOS = leerDato("Sistema Operativo: ");
 
-
-                    String capacitiva_resistiva = JOptionPane.showInputDialog("¿Es capacitiva o resistiva?: "); // debería dar solo esas opciones?
-                    tamano_pantalla = JOptionPane.showInputDialog("Tamaño de pantalla: ");
-                    String NAND = JOptionPane.showInputDialog("Capacidad de disco:");
-
-                    menu_registro.add(new Tablet(fabricante, modelo, procesador, tamano_pantalla, capacitiva_resistiva, NAND));
+                    menu_registro.add(new Tablet(fabricante, modelo, procesador, tamano_pantalla, capacitiva_resistiva, NAND, SOS));
 
                     JOptionPane.showMessageDialog(null, "¡La Tablet ya está registrada!\n");
 
                     break;
 
+                case 4:
+                    break;
+
+
                 default:
-                    JOptionPane.showMessageDialog(null, "Regresando al menú principal...");
+                    JOptionPane.showMessageDialog(null, "No seleccionaste una opcion valida, regresando al menú principal...");
+
                     break;
             }
         }
     }
 
 
-    // -------------------------------------------------
-    // Impresión al usuario
-    // -------------------------------------------------
+// -------------------------------------------------
+// Impresión al usuario
+// -------------------------------------------------
 
     public static void ver() {
         int opcion = 0;
@@ -213,22 +252,31 @@ public class Main {
             );
 
             if (lectura == null) break;
-            opcion = Integer.parseInt(lectura);
-            //Desktops torre = (Desktops) item;
+
+            try {
+                opcion = Integer.parseInt(lectura);
+            } catch (NumberFormatException e){
+                continue;
+            }
 
             String reporte = "";
 
             switch (opcion) {
                 case 1:
-                    reporte = "Estas son las torres que tenemos en inventario: \n";
+                    reporte =
+                            "========================================" + "\n" +
+                            "Estas son las torres que tenemos en inventario: \n";
                     for (Items item : menu_registro) {
                         if (item instanceof Desktops) {
 
                             Desktops torre = (Desktops) item;
 
-                            reporte += "Fabricante: " + torre.fabricante + "\n" +
+                            reporte +=
+                                    "========================================" + "\n" +
+                                    "Fabricante: " + torre.fabricante + "\n" +
                                     "Modelo: " + torre.modelo + "\n" +
                                     "Microprocesador: " + torre.procesador + "\n" +
+                                    "Memoria: " + torre.getMemoria() + "\n" +
                                     "Tarjeta grafica: " + torre.getGPU() + "\n" +
                                     "Tamaño de torre: " + torre.getDimension() + "\n" +
                                     "Capacidad de disco duro: " + torre.getCapacidad() + "\n" ;
@@ -237,13 +285,17 @@ public class Main {
                     break;
 
                 case 2:
-                    reporte = "Estas son las laptops que tenemos en inventario: \n";
+                    reporte =
+                            "========================================" + "\n" +
+                            "Estas son las laptops que tenemos en inventario: \n";
                     for (Items item : menu_registro) {
                         if (item instanceof Laptop) {
 
                             Laptop lap = (Laptop) item;
 
-                            reporte += "Fabricante: " + lap.fabricante + "\n" +
+                            reporte +=
+                                    "========================================" + "\n" +
+                                    "Fabricante: " + lap.fabricante + "\n" +
                                     "Modelo: " + lap.modelo + "\n" +
                                     "Microprocesador: " + lap.procesador + "\n" +
                                     "Memoria: " + lap.getMemoria() + "\n" +
@@ -258,37 +310,32 @@ public class Main {
 
                 case 3:
 
-                    reporte = "Estas son las tablets que tenemos en inventario: \n";
+                    reporte =
+                            "========================================" + "\n" +
+                            "Estas son las tablets que tenemos en inventario: \n";
                     for (Items item : menu_registro) {
                         if (item instanceof Tablet) {
 
                             Tablet tab = (Tablet) item;
 
-                            reporte += "Fabricante: " + tab.fabricante + "\n" +
+                            reporte +=
+                                    "========================================" + "\n" +
+                                    "Fabricante: " + tab.fabricante + "\n" +
                                     "Modelo: " + tab.modelo + "\n" +
                                     "Microprocesador: " + tab.procesador + "\n" +
-                                    "Memoria: " + tab.getcapacitiva_resistiva() + "\n" +
-                                    "Tamaño de pantalla: " + tab.getTamanoPantalla() + "\n" +
-                                    "Capacidad de disco duro: " + tab.getMemoriaNAND() + "\n"
+                                    "Tamaño diagonal de pantalla: " + tab.getTamanoPantalla() + "\n" +
+                                    "¿Capacitiva/Resistiva?: " + tab.getcapacitiva_resistiva() + "\n" +
+                                    "Tamaño de memoria NAND: " + tab.getMemoriaNAND() + "\n" +
+                                    "Sistema Operativo: " + tab.getSos() + "\n"
                                     ;
                         }
                     }
-
-                    /*
-                        public Tablet(String fabricante, String modelo, String procesador, String tamano_pantalla, String capacitiva_resistiva, String tamano_memoria_NAND) {
-                        super(fabricante, modelo, procesador);
-
-                        this.capacitiva_resistiva = capacitiva_resistiva;
-                        this.tamano_pantalla = tamano_pantalla;
-                        this.tamano_memoria_NAND = tamano_memoria_NAND;
-
-                    * */
 
                     break;
             }
 
             if (opcion >= 1 && opcion <= 3) {
-                if (reporte.length() < 30) {
+                if (reporte.length() < 100) {
                     JOptionPane.showMessageDialog(null, "No hay equipos registrados en esta categoría.");
                 } else {
                     JOptionPane.showMessageDialog(null, reporte);
@@ -297,7 +344,3 @@ public class Main {
         }
     }
 }
-
-
-
-
