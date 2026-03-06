@@ -1,13 +1,16 @@
 /*
-Ingresen acá sus nombres !!
 
-Foro 2, integrantes del equipo:
-1- José Benjamín Valencia Rivera – VR251194
-2- Alexis Ernesto Hernández Monge – HM253055
-3- Jimmy Asdrubal Canales Zelaya – CZ253631
-4- José Ángel Hernández Sánchez – HS240400
-5- Gabriel de Jesús Campos Romero CR162707
+-------- Programación Orientada a Objetos --------
+Integrantes del equipo:
+    1- José Benjamín Valencia Rivera – VR251194
+    2- Alexis Ernesto Hernández Monge – HM253055
+    3- Jimmy Asdrubal Canales Zelaya – CZ253631
+    4- José Ángel Hernández Sánchez – HS240400
+    5- Gabriel de Jesús Campos Romero CR162707
 */
+
+
+
 // -------------------------------------------------
 // Librerías
 // -------------------------------------------------
@@ -93,13 +96,13 @@ class Tablet extends Items {
     public String getMemoriaNAND() { return tamano_memoria_NAND; }
 }
 
+
+// -------------------------------------------------
+// Lógica de registros
+// -------------------------------------------------
 public class Main {
     static ArrayList<Items> menu_registro = new ArrayList<>();
 
-
-    // -------------------------------------------------
-// Lógica de registros
-// -------------------------------------------------
     public static void main(String[] args) {
         int opcion = 0;
 
@@ -139,9 +142,6 @@ public class Main {
     }
 
 
-    // -------------------------------------------------
-// Validar que el usuario ingrese información
-// -------------------------------------------------
     private static String leerDato(String mensaje) {
         String dato;
         do {
@@ -213,7 +213,7 @@ public class Main {
                     modelo = leerDato("Modelo:");
                     procesador = leerDato("Microprocesador: ");
                     tamano_pantalla = leerDato("Tamaño de pantalla: ");
-                    String capacitiva_resistiva = leerDato("¿Es capacitiva o resistiva?: "); // debería dar solo esas opciones?
+                    String capacitiva_resistiva = leerDato("¿Es capacitiva o resistiva?: ");
                     String NAND = leerDato("Capacidad de disco: ");
                     String SOS = leerDato("Sistema Operativo: ");
 
@@ -304,8 +304,6 @@ public class Main {
                             ;
                         }
                     }
-
-
                     break;
 
                 case 3:
